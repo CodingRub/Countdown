@@ -1,0 +1,350 @@
+@import url('https://fonts.googleapis.com/css2?family=Abel&family=Cabin:wght@500&family=Courgette&family=Satisfy&display=swap');
+
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+.main {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    max-height: 500px;
+}
+
+body {
+    background-image: url("../background.gif");
+}
+
+.main h1 {
+    font-family: 'Satisfy', cursive;
+    letter-spacing: 2px;
+    font-weight: bold;
+    font-size: 5.5em;
+    color: white;
+    animation: animateY 3s;
+}
+
+
+.main h3 {
+    font-family: 'Cabin', sans-serif;
+    font-size: 1.5em;
+    position: relative;
+    top: -80px;
+    color: white;
+    animation: animateX 3s;
+}
+
+.buttons {
+    width: 500px;
+    text-align: center;
+    display: flex;
+    justify-content: space-around;
+    padding: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: -50px;
+    animation: fadeIn ease 6s;
+}
+
+.buttons a {
+    padding: 15px 50px;
+    border-radius: 10px;
+    border: none;
+    color: white;
+    font-weight: bold;
+    font-family: 'Cabin', sans-serif;
+    letter-spacing: 2px;
+    text-decoration: none;
+}
+
+.buttons a:nth-child(1) {
+    background: none;
+    border: 3px solid rgb(172, 157, 29);
+}
+
+.buttons a:nth-child(1):hover {
+    background: linear-gradient(45deg, #46472e, #d8c517);
+    border: none;
+}
+
+.buttons a:nth-child(2) {
+    background: linear-gradient(45deg, #46472e, #d8c517);
+}
+
+.buttons a:nth-child(2):hover {
+    background: none;
+    border: 3px solid goldenrod;
+
+    
+}
+
+@keyframes animateY {
+    0%{
+      transform: translateY(-400px);
+    }
+    100% {
+      transform: translateY(0px);
+    }
+  }
+
+@keyframes animateX {
+    0%{
+      transform: translateX(-600px);
+    }
+    100% {
+      transform: translateX(0px);
+    }
+  }
+
+.login {
+    background:linear-gradient(45deg, #1b1a1ab4, #272724b4);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    width: 300px;
+    padding: 40px;
+    border: 3px solid goldenrod;
+    border-radius: 10px;
+}
+
+.login h3 {
+    color: white;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-family: 'Cabin', sans-serif;
+    font-size: 1.5em;
+    letter-spacing: 3px;
+}
+
+.login input[type = "email"], .login input[type = "text"], .login input[type="password"] {
+    border: 0;
+    background: none;
+    display: block;
+    margin: 20px auto;
+    text-align: center;
+    border-bottom: 2px solid goldenrod;
+    padding: 14px 10px;
+    width: 200px;
+    outline: none;
+    color: white;
+    transition: 0.25s;
+}
+
+.login input[type = "email"]:focus, .login input[type="password"]:focus {
+    width: 280px;
+    border-color: goldenrod;
+}
+
+.login input[type="submit"] {
+    border: 0;
+    background: none;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 50px;
+    text-align: center;
+    border: 2px solid goldenrod;
+    padding: 14px 40px;
+    width: 200px;
+    outline: none;
+    color: white;
+    border-radius: 24px;
+    transition: 0.25s;
+    cursor: pointer;
+}
+
+.login input[type="submit"]:hover {
+    background: linear-gradient(45deg, #46472e, #d8c517);
+    border: none;
+}
+
+.already {
+    border: 0;
+    background: none;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 30px;
+    text-align: center;
+    border: 2px solid goldenrod;
+    padding: 14px 40px;
+    width: 200px;
+    outline: none;
+    color: white;
+    border-radius: 24px;
+    transition: 0.25s;
+    cursor: pointer; 
+    text-decoration: none;
+    font-family: 'Cabin', sans-serif;
+}
+
+@keyframes fadeIn {
+    0% {opacity:0;}
+    100% {opacity:1;}
+}
+
+.countdown {
+    position: fixed;
+    width: 75%;
+    left: 0;
+    height: 100%;
+    background: #252521bd;
+    z-index: 1010101010;
+    text-align: center;
+}
+
+.column {
+    display: inline;
+}
+
+.countdown h1, .countdown h3 {
+    color: white;
+}
+
+.countdown h1, .countdown h3 {
+    margin: 0;
+    padding: 0;
+}
+
+.centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    max-height: 500px;
+}
+
+.chat {
+    position: fixed;
+    width: 25%;
+    right: 0;
+    height: 100%;
+    background: #252521bd;
+    z-index: 1010101010;
+    border-left: 6px double goldenrod;
+}
+
+.chat p {
+    text-transform: uppercase;
+    font-weight: bold;
+    font-family: 'Cabin', sans-serif;
+    font-size: 1.5em;
+    letter-spacing: 3px;
+    color: white;
+    text-align: center;
+    padding-bottom: 20px;
+    border-bottom: 6px double goldenrod;
+}
+
+.chat .messagearea {
+    text-transform: uppercase;
+    font-weight: bold;
+    font-family: 'Cabin', sans-serif;
+    font-size: 1.5em;
+    letter-spacing: 3px;
+    color: white;
+    text-align: center;
+    padding-bottom: 20px;
+    border-top: 6px double goldenrod;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+
+}
+
+.messagearea textarea {
+    margin: 10px;
+    background: none;
+    border: 3px solid goldenrod;
+    border-radius: 10px;
+    resize: none;
+    color: white;
+    font-family: 'Cabin', sans-serif;
+    padding: 10px 5px;
+    font-size: 0.5em;
+}
+
+.messagearea input[type="submit"] {
+    border: 0;
+    background: none;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    text-align: center;
+    border: 2px solid goldenrod;
+    padding: 8px 40px;
+    width: 250px;
+    outline: none;
+    color: white;
+    border-radius: 24px;
+    transition: 0.25s;
+    cursor: pointer;
+}
+
+.messagearea input[type="submit"]:hover {
+    background: linear-gradient(45deg, #46472e, #d8c517);
+    color: black;
+    font-weight: bold;
+}
+
+.countdown p {
+    color: white;
+    font-size: 2.5em;
+    font-weight: bold;
+    font-family: 'Cabin', sans-serif;
+    letter-spacing: 3px;
+}
+
+.complete p {
+    color: white;
+    font-size: 0.5em;
+    font-weight: bold;
+    font-family: 'Cabin', sans-serif;
+    letter-spacing: 3px;
+
+}
+
+.countdown h1 {
+    font-family: 'Satisfy', cursive;
+    letter-spacing: 2px;
+    font-weight: bold;
+    font-size: 2.5em;
+    color: white;
+    margin: 10px 0;
+}
+
+.countdown h3 {
+    color: white;
+    font-size: 1.5em;
+    font-weight: bold;
+    font-family: 'Cabin', sans-serif;  
+}
+
+.scroller {
+    width: 385px;
+    height: 450px;
+    overflow-y: scroll;
+}
+
+.countdown a {
+    text-transform: uppercase;
+    font-weight: bold;
+    font-family: 'Cabin', sans-serif;
+    font-size: 1.5em;
+    letter-spacing: 3px;
+    color: white;
+    text-align: center;
+    padding-bottom: 20px;
+    text-decoration: none;
+    display: block;
+    margin: 30px 0;
+    text-align: left;
+    padding-left: 20px;
+}
