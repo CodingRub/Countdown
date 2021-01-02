@@ -21,11 +21,14 @@ if(isset($_POST['register'])) {
                 if($mailexist == 0) {
                     if($mdp == $mdp2) {
                         $hash = password_hash($mdp, PASSWORD_DEFAULT);
-                        $req = $bdd->prepare('INSERT INTO member(pseudo, email, pswd) VALUES(:pseudo, :email, :pswd)');
+                        $req = $bdd->prepare('INSERT INTO member(pseudo, email, pswd, color, statut, connected) VALUES(:pseudo, :email, :pswd, :color, :statut, :connected)');
                         $req->execute(array(
                             'pseudo' => $pseudo,
                             'email' => $email,
-                            'pswd' => $hash));
+                            'pswd' => $hash,
+                            'color' => "red",
+                            'statut' => "user",
+                            'connected' => "false"));
                         $info = "Votre compte a bien été créé !";
                         header('Location: login.php');
                     } else {
