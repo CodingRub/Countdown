@@ -1,11 +1,6 @@
 <?php 
 session_start();
-try {
-    $bdd = new PDO ('mysql:host=localhost;dbname=countdown', 'root', '');
-} 
-catch(Exception $e) {
-   die('Erreur :'.$e->getMessage());
-}
+include "connection.php";
 $task = "list";
 $author = $_SESSION['pseudo'];
 
@@ -36,8 +31,9 @@ function postMessage() {
         return;
     } else {
         $content = $_POST['message'];
-        $query = $bdd->prepare('INSERT INTO messages SET pseudo = :pseudo, chat = :chat');
-        $query->execute(["pseudo" => $author, "chat" => $content]);
+        $color = $_POST['color'];
+        $query = $bdd->prepare('INSERT INTO messages SET pseudo = :pseudo, chat = :chat, color = :color');
+        $query->execute(["pseudo" => $author, "chat" => $content, "color" => $color]);
         echo json_encode(["status" => "success", "message" => "Le message est bien pris en compte !"]);
     }
 }
