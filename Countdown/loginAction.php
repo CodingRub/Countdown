@@ -16,12 +16,19 @@ if(isset($_POST['login'])) {
         $memberexist = $req->rowCount();
         if($memberexist == 1) {
             $userinfo = $req->fetch();
+            $id = $userinfo['id'];
             $hash = $userinfo['pswd'];
+            $statut = $userinfo['statut'];
+            $color = $userinfo['color'];
             if(password_verify($mdp, $hash)) {
                 session_start();
                 $_SESSION["loggedin"] = true;
-                $_SESSION['id'] = $userinfo['id'];
+                $_SESSION['id'] = $id;
                 $_SESSION['pseudo'] = $userinfo['pseudo'];
+                $_SESSION['statut'] = $statut;
+                $_SESSION['color'] = $color;
+                $reponse = $bdd->prepare("UPDATE member SET connected='true' WHERE id=$id");
+                $reponse->execute();
                 header("Location: countdown.php");
             } else {
                 $info = "Email ou Mot de passe faux :(";
