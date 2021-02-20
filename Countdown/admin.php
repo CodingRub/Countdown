@@ -26,8 +26,20 @@ include "connection.php"; ?>
             <div class="users">
                 <table id="customers">
                 <h2>Liste des utilisateurs: </h2>
-                <div class="add" style="display: none;">
-                    <button>Promove</button>
+                <div class="add">
+                    <?php 
+                    $req = $bdd->prepare("SELECT * FROM member WHERE connected = 'true'");
+                    $req->execute();
+                    $memberconnected = $req->rowCount();
+                    $req = $bdd->prepare("SELECT * FROM member");
+                    $req->execute();
+                    $memberexist = $req->rowCount();
+                    echo '<span style="color: white;">En ligne: '.$memberconnected.'/'.$memberexist.'</span>';
+                    $req = $bdd->query("SELECT MAX(id) AS max_id FROM member");
+                    while($last = $req->fetch(PDO::FETCH_ASSOC)) {
+                        echo("<span class='ghostId' style='display: none;'>".$last['max_id']."</span>");
+                    }
+                    ?>
                 </div>
                     <tr>
                         <th>User</th>
@@ -41,11 +53,11 @@ include "connection.php"; ?>
                     while ($donnees = $reponse->fetch()){
 
                         if($donnees['connected'] == "true") {
-                            echo '<tr><td class="withStat"><div class="all"><span>' . htmlspecialchars($donnees['pseudo']) . '</span><span>'. htmlspecialchars($donnees['statut']) .'</span></div></td><td>' . htmlspecialchars($donnees['created']) . '</td><td>' . htmlspecialchars($donnees['email']) . '</td><td style="color:lightgreen;"><i class="fas fa-circle"></i></td><td><a href="#" class="editIcon"><i class="fas fa-user-edit"></i></a> <a href="suprimerUser.php?id='. htmlspecialchars($donnees['id']).'"><i class="fas fa-trash-alt"></i></a></td>';
-                            echo '<tr class="editSave"><form method="post"><td class="withStat"><div class="all"><input id="prodId" name="prodId" type="hidden" value="'. htmlspecialchars($donnees['id']) .'"><span><input class="newName"  name="newPseudo" placeholder="Nouveau pseudo:" type="text"></span><span><select class="Rank" name="rank"><option value="user">User</option><option value="modo">Modérateur</option><option value="admin">Admin</option></select></span></div></td><td>15/11/2021</td><td><input class="newMail" type="text" name="newMail"></td><td style="color:lightgreen;"><i class="fas fa-circle"></i></td><td><input type="submit" name="save" value="Save"></td></form></tr>';
+                            echo '<tr><td class="withStat"><div class="all"><span>' . htmlspecialchars($donnees['pseudo']) . '</span><span>'. htmlspecialchars($donnees['statut']) .'</span></div></td><td>' . htmlspecialchars($donnees['created']) . '</td><td>' . htmlspecialchars($donnees['email']) . '</td><td style="color:lightgreen;"><i class="fas fa-circle"></i></td><td><a href="#" class="editIcon' . htmlspecialchars($donnees['id']) . '"><i class="fas fa-user-edit"></i></a> <a href="suprimerUser.php?id='. htmlspecialchars($donnees['id']).'"><i class="fas fa-trash-alt"></i></a></td>';
+                            echo '<tr class="editSave' . htmlspecialchars($donnees['id']) . '"><form method="post"><td class="withStat"><div class="all"><input id="prodId" name="prodId" type="hidden" value="'. htmlspecialchars($donnees['id']) .'"><span><input class="newName"  name="newPseudo" placeholder="Nouveau pseudo:" type="text"></span><span><select class="Rank" name="rank"><option value="user">User</option><option value="modo">Modérateur</option><option value="admin">Admin</option></select></span></div></td><td>15/11/2021</td><td><input class="newMail" type="text" name="newMail"></td><td style="color:lightgreen;"><i class="fas fa-circle"></i></td><td><input type="submit" name="save" value="Save"></td></form></tr>';
                         } else {
-                            echo '<tr><td class="withStat"><div class="all"><span>' . htmlspecialchars($donnees['pseudo']) . '</span><span>'. htmlspecialchars($donnees['statut']) .'</span></div></td><td>' . htmlspecialchars($donnees['created']) . '</td><td>' . htmlspecialchars($donnees['email']) . '</td><td style="color:red;"><i class="fas fa-circle"></i></td><td><a href="#" class="editIcon"><i class="fas fa-user-edit"></i></a> <a href="suprimerUser.php?id='. htmlspecialchars($donnees['id']).'"><i class="fas fa-trash-alt"></i></a></td>';
-                            echo '<tr class="editSave"><form method="post"><td class="withStat"><div class="all"><input id="prodId" name="prodId" type="hidden" value="'. htmlspecialchars($donnees['id']) .'"><span><input class="newName"  name="newPseudo" placeholder="Nouveau pseudo:" type="text"></span><span><select class="Rank" name="rank"><option value="user">User</option><option value="modo">Modérateur</option><option value="admin">Admin</option></select></span></div></td><td>15/11/2021</td><td><input class="newMail" type="text" name="newMail"></td><td style="color:red;"><i class="fas fa-circle"></i></td><td><input type="submit" name="save" value="Save"></td></form></tr>';
+                            echo '<tr><td class="withStat"><div class="all"><span>' . htmlspecialchars($donnees['pseudo']) . '</span><span>'. htmlspecialchars($donnees['statut']) .'</span></div></td><td>' . htmlspecialchars($donnees['created']) . '</td><td>' . htmlspecialchars($donnees['email']) . '</td><td style="color:red;"><i class="fas fa-circle"></i></td><td><a href="#" class="editIcon' . htmlspecialchars($donnees['id']) . '"><i class="fas fa-user-edit"></i></a> <a href="suprimerUser.php?id='. htmlspecialchars($donnees['id']).'"><i class="fas fa-trash-alt"></i></a></td>';
+                            echo '<tr class="editSave' . htmlspecialchars($donnees['id']) . '"><form method="post"><td class="withStat"><div class="all"><input id="prodId" name="prodId" type="hidden" value="'. htmlspecialchars($donnees['id']) .'"><span><input class="newName"  name="newPseudo" placeholder="Nouveau pseudo:" type="text"></span><span><select class="Rank" name="rank"><option value="user">User</option><option value="modo">Modérateur</option><option value="admin">Admin</option></select></span></div></td><td>15/11/2021</td><td><input class="newMail" type="text" name="newMail"></td><td style="color:red;"><i class="fas fa-circle"></i></td><td><input type="submit" name="save" value="Save"></td></form></tr>';
                         }
                     }
                     $reponse->closeCursor();
@@ -54,10 +66,23 @@ include "connection.php"; ?>
                     if(isset($info)) {
                         echo '<font color="red">'.$info."</font>";
                     }
+
                 ?>
                 </table>
             </div>
     </div>
     <script src="js/edit.js"></script>
+    <?php 
+    $reponse = $bdd->query('SELECT * FROM member ORDER BY ID ASC');
+    // Affichage de chaque message (toutes les données sont protégées par htmlspecialchars)
+    while ($donnees = $reponse->fetch()){
+    echo('<script>
+    document.querySelector(".editSave'.$donnees['id'].'").style.display = "none";
+    $(".editIcon'.$donnees['id'].'").click(function(){
+        $(".editSave'.$donnees['id'].'").toggle();
+    })  
+    </script>');
+    }
+    ?>
 </body>
 </html>
